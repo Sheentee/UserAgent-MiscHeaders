@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             item.className = 'source-item';
             item.innerHTML = `
                 <div style="overflow: hidden; text-overflow: ellipsis;">
-                    <div class="label">${header.name}</div>
+                    <div class="header-name-label">${header.name}</div>
                     <div class="value" style="font-size: 14px;">${header.value}</div>
                 </div>
                 <button class="btn-icon delete-header" data-index="${index}">
