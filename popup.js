@@ -75,17 +75,32 @@ document.addEventListener('DOMContentLoaded', async () => {
         customHeaders.forEach((header, index) => {
             const item = document.createElement('div');
             item.className = 'source-item';
-            item.innerHTML = `
-                <div style="overflow: hidden; text-overflow: ellipsis;">
-                    <div class="header-name-label">${header.name}</div>
-                    <div class="value" style="font-size: 14px;">${header.value}</div>
-                </div>
-                <button class="btn-icon delete-header" data-index="${index}">
+                const labelContainer = document.createElement('div');
+                labelContainer.style.cssText = "overflow: hidden; text-overflow: ellipsis;";
+                
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'header-name-label';
+                nameDiv.textContent = header.name;
+                
+                const valueDiv = document.createElement('div');
+                valueDiv.className = 'value';
+                valueDiv.style.fontSize = '14px';
+                valueDiv.textContent = header.value;
+                
+                labelContainer.appendChild(nameDiv);
+                labelContainer.appendChild(valueDiv);
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'btn-icon delete-header';
+                deleteBtn.dataset.index = index;
+                deleteBtn.innerHTML = `
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M18 6L6 18M6 6l12 12"></path>
                     </svg>
-                </button>
-            `;
+                `;
+
+                item.appendChild(labelContainer);
+                item.appendChild(deleteBtn);
             headersList.appendChild(item);
         });
 
